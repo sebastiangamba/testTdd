@@ -17,7 +17,7 @@ public class HelloWorldController {
     }
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String helloWorld() {
+    public String helloWorld(String name) {
         return helloWorldService.returnHelloMessage();
     }
 }

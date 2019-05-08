@@ -10,6 +10,7 @@ import static org.mockito.Mockito.verify;
 
 public class HelloWorldControllerTest {
 
+    private static final String TEST_NAME = "bleh";
     /**
      * subject under testing
      */
@@ -28,14 +29,23 @@ public class HelloWorldControllerTest {
     @Test
     public void shouldNotReturnNullWhenAHelloWorld() {
 
-        String response = subject.helloWorld();
+        String response = subject.helloWorld(TEST_NAME);
         Assertions.assertThat(response).isNotNull();
     }
 
     @Test
     public void shouldCallService() {
 
-        String response = subject.helloWorld();
+        String response = subject.helloWorld(TEST_NAME);
         verify(helloWorldService).returnHelloMessage();
+    }
+
+    @Test
+    public void shouldSayHelloToNameWhenHelloWorld() {
+
+        String name = "pepe";
+        Mockito.when(helloWorldService.returnHelloMessage()).thenReturn("asdasd"+name);
+        String response = subject.helloWorld(name);
+        Assertions.assertThat(response).contains(name);
     }
 }
