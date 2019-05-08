@@ -18,6 +18,6 @@ public class HelloWorldController {
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String helloWorld(String name) {
-        return helloWorldService.returnHelloMessage();
+        return helloWorldService.returnHelloMessage(name);
     }
 }

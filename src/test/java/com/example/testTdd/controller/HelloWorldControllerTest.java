@@ -6,7 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 public class HelloWorldControllerTest {
 
@@ -29,6 +30,7 @@ public class HelloWorldControllerTest {
     @Test
     public void shouldNotReturnNullWhenAHelloWorld() {
 
+        when(helloWorldService.returnHelloMessage(anyString())).thenReturn(TEST_NAME);
         String response = subject.helloWorld(TEST_NAME);
         Assertions.assertThat(response).isNotNull();
     }
@@ -37,14 +39,14 @@ public class HelloWorldControllerTest {
     public void shouldCallService() {
 
         String response = subject.helloWorld(TEST_NAME);
-        verify(helloWorldService).returnHelloMessage();
+        verify(helloWorldService).returnHelloMessage(TEST_NAME);
     }
 
     @Test
     public void shouldSayHelloToNameWhenHelloWorld() {
 
         String name = "pepe";
-        Mockito.when(helloWorldService.returnHelloMessage()).thenReturn("asdasd"+name);
+        when(helloWorldService.returnHelloMessage(name)).thenReturn("asdasd"+name);
         String response = subject.helloWorld(name);
         Assertions.assertThat(response).contains(name);
     }

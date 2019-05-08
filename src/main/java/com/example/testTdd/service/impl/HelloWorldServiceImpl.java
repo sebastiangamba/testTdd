@@ -10,7 +10,7 @@ public class HelloWorldServiceImpl implements IHelloWorldService {
     private String message = "Hello world";
 
     @Override
-    public String returnHelloMessage() {
-        return message;
+    public String returnHelloMessage(String name) {
+        return message + " " + name;
     }
 }
