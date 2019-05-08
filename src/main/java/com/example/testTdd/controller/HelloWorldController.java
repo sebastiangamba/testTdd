@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HelloWorldController {
@@ -17,7 +19,7 @@ public class HelloWorldController {
     }
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String helloWorld(String name) {
+    public @ResponseBody String helloWorld(@RequestParam(value = "name") String name) {
         return helloWorldService.returnHelloMessage(name);
     }
 }
